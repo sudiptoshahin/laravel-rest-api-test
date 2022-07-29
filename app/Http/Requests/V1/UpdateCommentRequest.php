@@ -23,15 +23,14 @@ class UpdateCommentRequest extends FormRequest
      */
     public function rules()
     {
-        
+        return [
+            "commentText" => ["required"]
+        ];
     }
 
-    // protected function prepareForValidation()
-    // {
-    //     if($this->userId) {
-    //         $this->merge([
-    //             'user_id' => $this->userId
-    //         ]);
-    //     }
-    // }
+    protected function prepareForValidation() {
+        $this->merge([
+            'comment_text' => $this->commentText
+        ]);
+    }
 }
