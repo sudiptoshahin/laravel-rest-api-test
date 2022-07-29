@@ -14,6 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
+            // $table->charset = 'utf8mb4'; //  define charset
+            // $table->collation = 'utf8mb4_unicode_ci'; // define collection
             $table->id();
             $table->string('name');
             $table->string('type'); //  individuals->I or Business -> B

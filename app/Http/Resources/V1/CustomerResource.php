@@ -10,7 +10,7 @@ class CustomerResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public static $wrap = 'user';
 
@@ -24,7 +24,8 @@ class CustomerResource extends JsonResource
             'address' => $this->address,
             'city' => $this->city,
             'state' => $this->state,
-            'postalCode' => $this->postal_code
+            'postalCode' => $this->postal_code,
+            'invoices' => InvoiceResource::collection($this->whenLoaded('invoices'))
         ];
     }
 }

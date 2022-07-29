@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
+            // $table->charset = 'utf8mb4';
+            // $table->collation = 'utf8mb4_unicode_ci';
             $table->id();
-            $table->foreignId('customer_id')->constrained('customers');
-            $table->integer('amount');
-            $table->string('status'); //    billed -> B/b, Paid -> P/p, Void -> v/V
-            $table->dateTime('billed_date');
-            $table->dateTime('paid_date')->nullable();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('post_id')->constrained('posts');
+            $table->text('comment_text');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('comments');
     }
 };

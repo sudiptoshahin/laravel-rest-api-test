@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\InvoiceController;
+use App\Http\Controllers\Api\V1\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,6 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], f
     Route::apiResource('customers', CustomerController::class);
 
     Route::apiResource('invoices', InvoiceController::class);
+
+    Route::apiResource('posts', PostController::class);
 });

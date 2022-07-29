@@ -3,9 +3,8 @@
 namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Customer;
 
-class InvoiceResource extends JsonResource
+class CommentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +16,11 @@ class InvoiceResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'customerId' => new CustomerResource(Customer::findOrFail($this->customer_id)),
-            'amount' => $this->amount,
-            'status' => $this->status,
-            'billedDate' => $this->billed_date,
-            'paidDate' => $this->paid_date
+            'userId' => $this->user_id,
+            'postId' => $this->post_id,
+            'commentText' => $this->comment_text,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at
         ];
     }
 }

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Customer;
-use App\Http\Requests\StoreCustomerRequest;
-use App\Http\Requests\UpdateCustomerRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCustomerRequest;
 
 use App\Http\Resources\V1\CustomerResource;
+use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\V1\CustomerCollection;
+
 
 class CustomerController extends Controller
 {
@@ -19,7 +21,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return new CustomerCollection(Customer::all());
+        return new CustomerCollection(Customer::paginate());
         // return CustomerResource::collection(Customer::all());
     }
 
@@ -41,7 +43,6 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
     }
 
     /**
@@ -52,7 +53,9 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return new CustomerResource($customer);
+        $result = DB::select("SELECT * FROM customers WHERE id=:id", ["id"=> $customer->id]);
+
+        return new CustomerResource($result);
     }
 
     /**
